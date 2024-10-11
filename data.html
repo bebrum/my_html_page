@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Таблица Изобретений - История Технологий</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="data.html">Таблица данных</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <details>
+            <summary>График</summary>
+            <form action="#" method="get">
+                <table>
+                    <tr>
+                        <td>
+                            <fieldset>
+                                <legend>Ось OX</legend>
+                                
+                                <p>
+                                    <input type="radio" id="ox-country" name="ox-axis" value="country">
+                                    <label for="ox-country">Страна</label><br>
+                                    
+                                    <input type="radio" id="ox-year" name="ox-axis" value="year">
+                                    <label for="ox-year">Год создания</label><br>
+                                    
+                                    <input type="radio" id="ox-inventor" name="ox-axis" value="inventor">
+                                    <label for="ox-inventor">Изобретатель</label>
+                                </p>
+                            </fieldset>
+                        </td>
+                        <td>
+                            <fieldset>
+                                <legend>Результат</legend>
+                                
+                                <p>
+                                    <input type="checkbox" id="show-patents" name="show-patents" value="patents">
+                                    <label for="show-patents">Количество патентов</label><br>
+                                    
+                                    <input type="checkbox" id="show-revenue_max" name="show-revenue_max" value="revenue">
+                                    <label for="show-revenue_max">Коммерческий успех (максимальный)</label><br>
+                                    
+                                    <input type="checkbox" id="show-revenue_min" name="show-revenue_min" value="bar">
+                                    <label for="show-revenue_min">Коммерческий успех (минимальный)</label>
+                                </p>
+                            </fieldset>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Построить график">
+            </form>
+        </details>
+
+        <details>
+            <summary>Фильтр</summary>
+            <form action="#" method="get">
+                <label for="filter-number">№</label>
+                <input type="number" id="filter-number" name="filter-number" placeholder="Введите №"><br>
+                <label for="filter-title">Название</label>
+                <input type="text" id="filter-title" name="filter-title" placeholder="Введите название"><br>
+
+                <label for="filter-year-min">Год создания: от</label>
+                <input type="number" id="filter-year-min" name="filter-year-min" placeholder="Введите год">
+                <label for="filter-year-max">до</label>
+                <input type="number" id="filter-year-max" name="filter-year-max" placeholder="Введите год"><br>
+
+                <label for="filter-inventor">Изобретатель</label>
+                <input type="text" id="filter-inventor" name="filter-inventor" placeholder="Введите имя"><br>
+
+                <label for="filter-patents-min">Количество патентов: от</label>
+                <input type="number" id="filter-patents-min" name="filter-patents-min" placeholder="Введите число патентов">
+                <label for="filter-patents-max">до</label>
+                <input type="number" id="filter-patents-max" name="filter-patents-max" placeholder="Введите число патентов"><br>
+
+                <label for="filter-revenue-min">Коммерческий успех (выручка): от</label>
+                <input type="number" id="filter-revenue-min" name="filter-revenue-min" placeholder="Введите выручку">
+                <label for="filter-revenue-max">до</label>
+                <input type="number" id="filter-revenue-max" name="filter-revenue-max" placeholder="Введите выручку"><br>
+
+                <label for="filter-country">Страна</label>
+                <input type="text" id="filter-country" name="filter-country" placeholder="Введите страну"><br>
+
+                <input type="submit" value="Применить фильтр">
+            </form>
+        </details>
+
+        <details>
+            <summary>Сортировка</summary>
+            <form action="#" method="get">
+                <label for="sort-level1">Уровень 1:</label>
+                <select id="sort-level1" name="sort-level1">
+                    <option value="">-- Выберите поле --</option>
+                    <option value="number">№</option>
+                    <option value="year">Год создания</option>
+                    <option value="patents">Количество патентов</option>
+                    <option value="revenue">Коммерческий успех (выручка)</option>
+                </select>
+                <label for="sort-order-level1">
+                    <input type="checkbox" id="sort-order-level1" name="sort-order-level1">
+                    Сортировать по убыванию
+                </label><br>
+
+                <label for="sort-level2">Уровень 2:</label>
+                <select id="sort-level2" name="sort-level2">
+                    <option value="">-- Выберите поле --</option>
+                    <option value="number">№</option>
+                    <option value="year">Год создания</option>
+                    <option value="patents">Количество патентов</option>
+                    <option value="revenue">Коммерческий успех (выручка)</option>
+                </select>
+                <label for="sort-order-level2">
+                    <input type="checkbox" id="sort-order-level2" name="sort-order-level2">
+                    Сортировать по убыванию
+                </label><br>
+
+                <label for="sort-level3">Уровень 3:</label>
+                <select id="sort-level3" name="sort-level3">
+                    <option value="">-- Выберите поле --</option>
+                    <option value="number">№</option>
+                    <option value="year">Год создания</option>
+                    <option value="patents">Количество патентов</option>
+                    <option value="revenue">Коммерческий успех (выручка)</option>
+                </select>
+                <label for="sort-order-level3">
+                    <input type="checkbox" id="sort-order-level3" name="sort-order-level3">
+                    Сортировать по убыванию
+                </label><br>
+
+                <input type="submit" value="Применить сортировку">
+            </form>
+        </details>
+    </section>
+
+    <section>
+        <h2>Список Изобретений</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Название</th>
+                    <th>Год создания</th>
+                    <th>Изобретатель</th>
+                    <th>Количество патентов</th>
+                    <th>Коммерческий успех(выручка), $</th>
+                    <th>Страна</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Телеграф</td>
+                    <td>1837</td>
+                    <td>Сэмюэл Морзе</td>
+                    <td>150</td>
+                    <td>500000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Телефон</td>
+                    <td>1876</td>
+                    <td>Александр Грэм Белл</td>
+                    <td>200</td>
+                    <td>1000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Лампочка</td>
+                    <td>1879</td>
+                    <td>Томас Эдисон</td>
+                    <td>300</td>
+                    <td>2000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Двигатель внутреннего сгорания</td>
+                    <td>1859</td>
+                    <td>Жозеф Рабон</td>
+                    <td>120</td>
+                    <td>800000</td>
+                    <td>Франция</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Пароход</td>
+                    <td>1807</td>
+                    <td>Роберт Фултон</td>
+                    <td>80</td>
+                    <td>600000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Железная дорога</td>
+                    <td>1825</td>
+                    <td>Чарльз Бут</td>
+                    <td>170</td>
+                    <td>1500000</td>
+                    <td>Великобритания</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Авиалайнер</td>
+                    <td>1903</td>
+                    <td>Братья Райт</td>
+                    <td>220</td>
+                    <td>2500000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Радио</td>
+                    <td>1895</td>
+                    <td>Гульельмо Маркони</td>
+                    <td>180</td>
+                    <td>1300000</td>
+                    <td>Италия</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Компьютер</td>
+                    <td>1943</td>
+                    <td>Конрад Цузе</td>
+                    <td>250</td>
+                    <td>5000000</td>
+                    <td>Германия</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Интернет</td>
+                    <td>1969</td>
+                    <td>DARPA</td>
+                    <td>350</td>
+                    <td>10000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Всемирная паутина (Web)</td>
+                    <td>1989</td>
+                    <td>Тим Бернерс-Ли</td>
+                    <td>400</td>
+                    <td>8000000</td>
+                    <td>Великобритания</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Проволока оптического волокна</td>
+                    <td>1970</td>
+                    <td>Чарльз Кауэ</td>
+                    <td>300</td>
+                    <td>9000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Микропроцессор</td>
+                    <td>1971</td>
+                    <td>Тед Хофф</td>
+                    <td>500</td>
+                    <td>12000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>GPS</td>
+                    <td>1973</td>
+                    <td>ВВС США</td>
+                    <td>400</td>
+                    <td>7000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Сотовая связь</td>
+                    <td>1979</td>
+                    <td>Мартин Купер</td>
+                    <td>450</td>
+                    <td>15000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Космический телескоп "Хаббл"</td>
+                    <td>1990</td>
+                    <td>NASA</td>
+                    <td>300</td>
+                    <td>20000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>3D-печать</td>
+                    <td>1984</td>
+                    <td>Чак Халл</td>
+                    <td>350</td>
+                    <td>5000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Робототехника</td>
+                    <td>1954</td>
+                    <td>Джордж Девол</td>
+                    <td>200</td>
+                    <td>8000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Лазер</td>
+                    <td>1960</td>
+                    <td>Теодор Майман</td>
+                    <td>250</td>
+                    <td>9000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Суперкомпьютер</td>
+                    <td>1964</td>
+                    <td>Сеймур Кристофер</td>
+                    <td>300</td>
+                    <td>11000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>DVD</td>
+                    <td>1995</td>
+                    <td>Соси Мацумото</td>
+                    <td>180</td>
+                    <td>6000000</td>
+                    <td>Япония</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>Облачные вычисления (Cloud Computing)</td>
+                    <td>2006</td>
+                    <td>Джефф Безос</td>
+                    <td>400</td>
+                    <td>20000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>Смартфон</td>
+                    <td>1992</td>
+                    <td>IBM (Simon Personal Communicator)</td>
+                    <td>500</td>
+                    <td>25000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>Bluetooth</td>
+                    <td>1994</td>
+                    <td>Jaap Haartsen</td>
+                    <td>220</td>
+                    <td>7000000</td>
+                    <td>Швеция</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>MP3-плеер</td>
+                    <td>1998</td>
+                    <td>Sandisk</td>
+                    <td>150</td>
+                    <td>5000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>Электронная книга</td>
+                    <td>1971</td>
+                    <td>Мартин Купер</td>
+                    <td>300</td>
+                    <td>4000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>Видеоигра</td>
+                    <td>1958</td>
+                    <td>Уильям Хигинбэк</td>
+                    <td>200</td>
+                    <td>8000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>Транзистор</td>
+                    <td>1947</td>
+                    <td>Билл Шокли</td>
+                    <td>400</td>
+                    <td>9000000</td>
+                    <td>США</td>
+                </tr>
+                <tr>
+                    <td>29</td>
+                    <td>CD (Compact Disc)</td>
+                    <td>1982</td>
+                    <td>Бернард Липман</td>
+                    <td>250</td>
+                    <td>7000000</td>
+                    <td>Япония</td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>DVD-плеер</td>
+                    <td>1996</td>
+                    <td>Panasonic</td>
+                    <td>220</td>
+                    <td>6000000</td>
+                    <td>Япония</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
